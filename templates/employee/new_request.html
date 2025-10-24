@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-semibold mb-4">Nueva solicitud</h2>
+  <form method="post" class="space-y-4">
+    <div>
+      <label class="block text-sm">Tipo</label>
+      <select name="type" required class="mt-1 w-full border rounded p-2">
+        <option value="vacation">Vacaciones</option>
+        <option value="permission">Permiso</option>
+        <option value="license">Licencia</option>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm">Fecha inicio</label>
+        <input name="start_date" type="date" required class="mt-1 w-full border rounded p-2" />
+      </div>
+      <div>
+        <label class="block text-sm">Fecha fin</label>
+        <input name="end_date" type="date" required class="mt-1 w-full border rounded p-2" />
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm">Motivo (opcional)</label>
+      <textarea name="reason" rows="3" class="mt-1 w-full border rounded p-2"></textarea>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="{{ url_for('employee.dashboard') }}" class="text-gray-600">Cancelar</a>
+      <button class="bg-green-600 text-white px-4 py-2 rounded">Enviar solicitud</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

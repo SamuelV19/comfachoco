@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mt-10">
+  <h1 class="text-3xl font-bold mb-4">Bienvenido a Comfachocó</h1>
+  <p class="text-gray-600 mb-8">
+    Plataforma de autogestión para empleados — gestiona tus vacaciones, permisos y licencias de forma rápida y sencilla.
+  </p>
+
+  {% if session.user_id %}
+    {% if user.role == 'employee' %}
+      <a href="{{ url_for('employee_dashboard') }}" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
+        Ir al Panel del Empleado
+      </a>
+    {% elif user.role == 'manager' %}
+      <a href="{{ url_for('manager_dashboard') }}" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700">
+        Ir al Panel del Gerente
+      </a>
+    {% endif %}
+  {% else %}
+    <a href="{{ url_for('login') }}" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
+      Iniciar Sesión
+    </a>
+  {% endif %}
+</div>
+{% endblock %}

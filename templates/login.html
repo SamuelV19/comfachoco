@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+  <h2 class="text-2xl font-semibold mb-4">Iniciar sesión</h2>
+  <form method="post" class="space-y-4">
+    <div>
+      <label class="block text-sm">Usuario</label>
+      <input name="username" required class="mt-1 w-full border rounded p-2" />
+    </div>
+    <div>
+      <label class="block text-sm">Contraseña</label>
+      <input name="password" type="password" required class="mt-1 w-full border rounded p-2" />
+    </div>
+    <div class="flex items-center justify-between">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">Entrar</button>
+      <a href="#" class="text-sm text-gray-500">¿Olvidaste tu contraseña?</a>
+    </div>
+  </form>
+  <p class="mt-4 text-sm text-gray-600">Credenciales de prueba: juan/1234 (employee), maria/1234 (manager)</p>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Comfachocó - Autogestión</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-lg font-semibold">
+        <a href="/">Comfachocó</a>
+      </div>
+      <div class="space-x-4 text-sm">
+        {% if current_user.is_authenticated %}
+          <span class="mr-2">Hola, {{ current_user.full_name or current_user.username }}</span>
+          <a href="{{ url_for('auth_logout') }}" class="text-red-600">Cerrar sesión</a>
+        {% else %}
+          <a href="{{ url_for('auth_login') }}" class="text-blue-600">Iniciar sesión</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 mt-6">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+            <div class="p-3 mb-2 rounded {{ 'bg-red-100 text-red-800' if category == 'error' else 'bg-green-100 text-green-800' }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
